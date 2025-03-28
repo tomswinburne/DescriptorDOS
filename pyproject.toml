@@ -35,7 +35,8 @@ packages = ["DescriptorDOS"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-mpi4py = { version = "^3.1.5", optional = true }
+mpi4py = { version = "^3.1.5", markers = "'READTHEDOCS' not in os.environ"}
+lammps = { version = "^2024.8.29", markers = "'READTHEDOCS' not in os.environ"}
 
 [tool.poetry.extras]
 mpi = ["mpi4py","lammps"]

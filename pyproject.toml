@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "DescriptorDOS"
-version = "0.2.4"
+version = "0.1"
 description = "DDOS: Score-matching the descriptor density of states"
 authors = [
     { name="TD Swinburne", email="thomas.swinburne@cnrs.fr" }

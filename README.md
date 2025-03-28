@@ -14,6 +14,13 @@ applications to non-linear architectures e.g. fine-tuning MACE are possible and 
 
 **The present implementation requires a `LAMMPS` descriptor calculation- see below**
 
+## Quick install
+If you run python code with `numpy`, `scipy`, `mpi4py` and `lammps`:
+```bash 
+pip install DescriptorDOS
+```
+And check out `examples/` for a simple application. Otherwise, see full installation below
+
 ## Algorithm Overview
 The DescriptorDOS algorithm leverages MPI parallelism for efficient sampling and tensor-compression for low-rank storage. <br>
 <img src="https://raw.githubusercontent.com/tomswinburne/DescriptorDOS/refs/heads/main/figures/algorithm.png" width=400></img>
@@ -37,13 +44,11 @@ conda install mpi4py lammps # conda-lammps has no MPI: one core/worker!
 ```
 For HPC use we recommend installing `lammps` and `mpi4py` as described <a href="https://docs.lammps.org/Python_head.html" target="_new">here</a>
 
-Install `DescriptorDOS` with (`pip` coming soon!)
+Install `DescriptorDOS`
 ```bash 
-git clone https://github.com/tomswinburne/DescriptorDOS.git
-cd DescriptorDOS
-python -m pip install -e . # will be on pypi asap....
+pip install DescriptorDOS
 ```
-You can run the tests in `testing/unittests.py` to check everything is set up correctly.
+Scripts in `testing/unittests.py` to check everything is set up correctly.
 
 ## Running Descriptor DOS
 See `examples/`. Whilst sampling is fully parallel, to generate samples with `Hessian` displacer, 

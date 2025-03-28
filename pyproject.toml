@@ -4,15 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "DescriptorDOS"
-version = "0.1"
+version = "0.1.0"
 description = "Score-matching the descriptor density of states for model agnostic sampling"
 authors = [
     {name = "Thomas D Swinburne", email = "thomas.swinburne@cnrs.fr"}
 ]
-license = {text = "MIT"}
+license = "MIT"
+
 readme = "README.md"
 requires-python = ">=3.10"
-
 dependencies = [
     "numpy>=1.21",
     "mpi4py>=3.1",
@@ -28,3 +28,4 @@ Source = "https://github.com/tomswinburne/DescriptorDOS"
 
 [tool.setuptools]
 packages = ["DescriptorDOS"]
+license-files = []

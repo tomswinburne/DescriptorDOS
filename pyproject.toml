@@ -1,22 +1,18 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "DescriptorDOS"
 version = "0.1"
-description = "DDOS: Score-matching the descriptor density of states"
+description = "Score-matching the descriptor density of states for model agnostic sampling"
 authors = [
-    { name="TD Swinburne", email="thomas.swinburne@cnrs.fr" }
+    {name = "Thomas D Swinburne", email = "thomas.swinburne@cnrs.fr"}
 ]
+license = {text = "MIT"}
 readme = "README.md"
-license = { file="LICENSE" }
-requires-python = ">=3.8"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-]
+requires-python = ">=3.10"
+
 dependencies = [
     "numpy>=1.21",
     "mpi4py>=3.1",
@@ -32,11 +28,3 @@ Source = "https://github.com/tomswinburne/DescriptorDOS"
 
 [tool.setuptools]
 packages = ["DescriptorDOS"]
-
-[tool.poetry.dependencies]
-python = "^3.9"
-mpi4py = { version = "^3.1.5", markers = "'READTHEDOCS' not in os.environ"}
-lammps = { version = "^2024.8.29", markers = "'READTHEDOCS' not in os.environ"}
-
-[tool.poetry.extras]
-docs = ["sphinx", "sphinx-rtd-theme"]  # Do NOT include mpi4py

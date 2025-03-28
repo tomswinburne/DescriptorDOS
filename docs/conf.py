@@ -16,6 +16,18 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 
+# Mock mpi4py to prevent installation on Read the Docs
+sys.path.insert(0, os.path.abspath("docs"))
+import mock_modules  # Import the fake mpi4py module
+
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
+]
+
+html_theme = "sphinx_rtd_theme"
+
+
 # -- Project information -----------------------------------------------------
 
 project = 'DescriptorDOS'

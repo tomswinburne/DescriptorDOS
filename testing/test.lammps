@@ -1,0 +1,40 @@
+# LAMMPS commands for DDOS
+# Must provide a compute 
+#       global_descriptor_compute_name 
+# which returns a global average descriptor of size
+#        descriptor_size 
+# Other than this 
+
+clear
+atom_style atomic
+atom_modify map array sort 0 0.0
+units           metal
+boundary        p p p
+neighbor 2.0 bin
+neigh_modify once no every 1 delay 0 check yes
+
+# could be any configuration here
+read_data input/test.dat
+
+mass * 183.84 # all data can be renormalized
+
+
+# potential used only for isosurface- does not have to match descriptor! 
+# e.g.
+# pair_style eam/fs
+# pair_coeff * * Potentials/X.eam.fs X
+# We label element X to emphasize alchemical nature
+pair_style snap
+pair_coeff * * input/test.snapcoeff input/test.snapparam X
+
+
+thermo          1
+thermo_modify norm no
+
+# The compute
+compute D all sna/atom 4.7 0.99363 8 0.5 1
+compute aveD all reduce ave c_D[*]
+
+
+reset_timestep	0
+run           	0

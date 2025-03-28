@@ -1,0 +1,40 @@
+
+# Output directory
+dump_path: output
+
+# Data file - will append isosurface type and save as pickle file
+dump_file: histograms-bcc
+
+# Dictionary of adjustable parameters with range in low,high,steps
+# IsoSurface is the isosurface value, 1.0 corresponds to T~=1000K
+# Dictionary of adjustable parameters with range in low,high,steps
+# IsoSurface is the isosurface value, 1.0 corresponds to T~=1000K
+input_parameters:
+  IsoSurface: [0.05, 2.0, 2]  # Isosurface temperature bounds
+  Strain: [0.0, 0.04, 2]  # volumetric strain bounds
+
+# Type of isosurface: "Hessian" "Kinetic" or "Basic"
+isosurface : "Hessian"
+
+# TOTAL force calls for each value of alpha
+default_calls : 10
+
+# Histogram bins per degree of freedom
+histogram_bins : 100
+
+
+# CPU cores per worker
+procs_per_worker : 1 # Optimal value is 1 unless memory limited
+
+# try to read modes from normal_mode_pkl_file 
+hessian_data : "Hessian-Data-All-Strains.pkl" # in dump_path
+
+
+# MUST correspond to compute in LAMMPS script below!
+global_descriptor_compute_name : "aveD"
+
+lammps_input_script: test.lammps
+
+
+
+

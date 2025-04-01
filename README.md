@@ -15,11 +15,31 @@ applications to non-linear architectures e.g. fine-tuning MACE are possible and 
 **The present implementation requires a `LAMMPS` descriptor calculation- see below**
 
 ## Quick install
-If you run python code with `numpy`, `scipy`, `mpi4py` and `lammps`:
-```bash 
+`DescriptorDOS` uses <a href="https://docs.lammps.org/Python_head.html" target="_new">LAMMPS</a> and `mpi4py`,
+in addition to `numpy` and `scipy`. If you can run
+```python
+from mpi4py import MPI
+from lammps import lammps
+lmp = lammps(comm=MPI.COMM_WORLD)
+lmp.close()
+```
+Then you can install `DescriptorDOS`:
+```bash
 pip install DescriptorDOS
 ```
-And check out `examples/` for a simple application. Otherwise, see full installation below
+Test routines can be found in this repository at `tests/`.
+Check out `examples/` for a simple application.
+Otherwise, see below for installation on HPC clusters. 
+
+For **local** testing you can install LAMMPS via `conda-lammps` (one CPU/worker)
+```bash
+conda config --add channels conda-forge # add conda-forge channel
+conda create -n ddos-env python=3.10 
+conda activate ddos-env 
+conda install mpi4py lammps
+pip install DescriptorDOS
+```
+We emphasize `conda-lammps` will not give optimal performance on HPC!
 
 ## Algorithm Overview
 The DescriptorDOS algorithm leverages MPI parallelism for efficient sampling and tensor-compression for low-rank storage. <br>

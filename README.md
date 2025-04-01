@@ -14,7 +14,7 @@ applications to non-linear architectures e.g. fine-tuning MACE are possible and 
 
 **The present implementation requires a `LAMMPS` descriptor calculation- see below**
 
-## Quick install
+## Installation
 `DescriptorDOS` uses <a href="https://docs.lammps.org/Python_head.html" target="_new">LAMMPS</a> and `mpi4py`,
 in addition to `numpy` and `scipy`. If you can run
 ```python
@@ -27,9 +27,9 @@ Then you can install `DescriptorDOS`:
 ```bash
 pip install DescriptorDOS
 ```
-Test routines can be found in this repository at `tests/`.
+Scripts in `testing/unittests.py` to check everything is set up correctly.
 Check out `examples/` for a simple application.
-Otherwise, see below for installation on HPC clusters. 
+For HPC use we recommend installing `lammps` and `mpi4py` as described <a href="https://docs.lammps.org/Python_head.html" target="_new">here</a>
 
 For **local** testing you can install LAMMPS via `conda-lammps` (one CPU/worker)
 ```bash
@@ -44,31 +44,6 @@ We emphasize `conda-lammps` will not give optimal performance on HPC!
 ## Algorithm Overview
 The DescriptorDOS algorithm leverages MPI parallelism for efficient sampling and tensor-compression for low-rank storage. <br>
 <img src="https://raw.githubusercontent.com/tomswinburne/DescriptorDOS/refs/heads/main/figures/algorithm.png" width=400></img>
-
-## Installing DescriptorDOS
-DescriptorDOS requires `numpy`, `scipy` and two additional packages:
-- `lammps` MD code, run via the python interface to evaluate descriptors and run NVE dynamics. 
-- `mpi4py` for MPI-parallel sampling, with (optionally) multiple MPI ranks per `lammps` instance.
-
-With a fresh python environment using e.g. `conda`:
-```bash
-conda create -n lammps_python_env python=3.10 
-conda activate lammps_python_env # activate virtual env
-pip install numpy scipy # install requirements 
-```
-
-Jan Janssen's `lammps` binary on `conda-force` has no GPU or internal MPI support, but allows easy testing
-```bash 
-conda config --add channels conda-forge # add conda-forge channel 
-conda install mpi4py lammps # conda-lammps has no MPI: one core/worker!
-```
-For HPC use we recommend installing `lammps` and `mpi4py` as described <a href="https://docs.lammps.org/Python_head.html" target="_new">here</a>
-
-Install `DescriptorDOS`
-```bash 
-pip install DescriptorDOS
-```
-Scripts in `testing/unittests.py` to check everything is set up correctly.
 
 ## Running Descriptor DOS
 See `examples/`. Whilst sampling is fully parallel, to generate samples with `Hessian` displacer, 

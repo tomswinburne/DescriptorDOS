@@ -58,7 +58,7 @@ Scripts in `testing/unittests.py` to check everything is set up correctly.
 Check out `examples/` for a simple application.
 For HPC use we recommend installing `lammps` and `mpi4py` as described <a href="https://docs.lammps.org/Python_head.html" target="_new">here</a>
 
-For **local** testing you can install LAMMPS via `conda-lammps` (one CPU/worker)
+For **local** testing you can install LAMMPS via @jan-janssen `conda-lammps` (one CPU/worker)
 ```bash
 conda config --add channels conda-forge # add conda-forge channel
 conda create -n ddos-env python=3.10 

@@ -10,9 +10,36 @@ Preprint:[arXiv 2025](https://arxiv.org/abs/2502.18191)<br>
 DescriptorDOS is designed for the wide variety of MLIPs that are linear in some set of descriptor features.  
 As we discuss in the paper, whilst this clearly includes ACE/SNAP/qSNAP/POD/MILADY "as-is", multiple
 applications to non-linear architectures are envisioned and will be available in the near future. 
-**Further applications / demonstrations of `DescriptorDOS` are coming- watch this space!**
 
-**The present implementation requires a `LAMMPS` descriptor calculation- see below**
+**Further applications / demonstrations of DescriptorDOS are coming- watch this space!**
+
+
+## Quick overview
+See below for installation (`mpi4py` and `lammps`), and `examples/` for detailed usage. 
+
+DescriptorDOS requires a LAMMPS input file which reads in the atomic structure, 
+loads the reference potential energy function and defines a global descriptor compute, 
+e.g. `SNAP`
+```
+# The descriptor compute
+compute D all sna/atom 4.7 0.99363 8 0.5 1
+compute aveD all reduce ave c_D[*]
+```
+The compute name is then passed by a YAML file or as an argument:
+Via `configuration.yaml`:
+```yaml
+lammps_input_script: "configuration-files/in.lammps"
+global_descriptor_compute_name : "aveD"
+```
+At initialization
+```python
+from mpi4py import MPI
+from DescriptorDOS import Manager 
+DDOS_Manager = Manager( comm=MPI.COMM_WORLD,
+                         global_descriptor_compute_name="aveD", # overwrites YAML
+                        yaml_file="configuration.yaml")
+DDOS_Manager.run()
+```
 
 ## Installation
 `DescriptorDOS` uses <a href="https://docs.lammps.org/Python_head.html" target="_new">LAMMPS</a> and `mpi4py`,
@@ -61,7 +88,7 @@ mpirun -np ${NPROCS} python run.py
 ```
 
 Whilst we provide many options in `run.py`, they can all be stored in a `yaml` file,
-so the python script can be as succinct as 
+so the python script can be as succinct as as snippet (first seen above)
 ```python
 from mpi4py import MPI
 from DescriptorDOS import Manager 

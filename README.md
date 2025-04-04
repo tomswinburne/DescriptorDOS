@@ -9,7 +9,7 @@ Preprint:[arXiv 2025](https://arxiv.org/abs/2502.18191)<br>
 
 DescriptorDOS is designed for the wide variety of MLIPs that are linear in some set of descriptor features.  
 As we discuss in the paper, whilst this clearly includes ACE/SNAP/qSNAP/POD/MILADY "as-is", multiple
-applications to non-linear architectures e.g. fine-tuning MACE are possible and will be available in the near future. 
+applications to non-linear architectures are envisioned and will be available in the near future. 
 **Further applications / demonstrations of `DescriptorDOS` are coming- watch this space!**
 
 **The present implementation requires a `LAMMPS` descriptor calculation- see below**
